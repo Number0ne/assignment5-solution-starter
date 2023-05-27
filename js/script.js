@@ -108,12 +108,12 @@ $(function () {
 
         var chosenCategoryIndex = chooseRandomCategory(categories);
         console.log(categories[chosenCategoryIndex]);
-        var chosenCategoryShortName = categories[chosenCategoryIndex];
+        var chosenCategoryShortName = categories[chosenCategoryIndex].short_name;
 
-        var homeHtmlToInsertIntoMainPage = buildCategoriesViewHtml(
+        var homeHtmlToInsertIntoMainPage = buildMenuItemsViewHtml(
           chosenCategoryShortName,
-          categoriesTitleHtml,
-          homeHtml
+          menuItemsTitleHtml,
+          menuItemHtml
         );
         insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
 
