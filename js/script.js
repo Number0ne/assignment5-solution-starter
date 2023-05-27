@@ -108,6 +108,7 @@ $(function () {
         // variable's name implies it expects.
 
         var chosenCategoryIndex = chooseRandomCategory(categories);
+        console.log(categories[chosenCategoryIndex]);
         var chosenCategoryShortName = categories[chosenCategoryIndex];
 
         // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
