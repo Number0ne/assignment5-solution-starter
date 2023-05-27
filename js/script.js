@@ -115,6 +115,7 @@ $(function () {
           menuItemsTitleHtml,
           homeHtml
         );
+        
         insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
 
         // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
