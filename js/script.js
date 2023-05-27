@@ -94,6 +94,7 @@ $(function () {
     $ajaxUtils.sendGetRequest(
       homeHtmlUrl,
       function (homeHtml) {
+        
         // Given array of category objects, returns a random category object.
         function chooseRandomCategory(categories) {
           // Choose a random index into the array (from 0 inclusively until array length (exclusively))
@@ -107,68 +108,6 @@ $(function () {
         // variable's name implies it expects.
 
         var chosenCategoryShortName = chooseRandomCategory(categories);
-
-        // Load the menu categories view
-        dc.loadMenuCategories = function () {
-          showLoading("#main-content");
-          $ajaxUtils.sendGetRequest(
-            allCategoriesUrl,
-            buildAndShowCategoriesHTML
-          );
-        };
-
-        // Builds HTML for the categories page based on the data
-        // from the server
-        function buildAndShowCategoriesHTML(categories) {
-          // Load title snippet of categories page
-          $ajaxUtils.sendGetRequest(
-            categoriesTitleHtml,
-            function (categoriesTitleHtml) {
-              // Retrieve single category snippet
-              $ajaxUtils.sendGetRequest(
-                categoryHtml,
-                function (categoryHtml) {
-                  // Switch CSS class active to menu button
-                  switchMenuToActive();
-
-                  var categoriesViewHtml = buildCategoriesViewHtml(
-                    categories,
-                    categoriesTitleHtml,
-                    categoryHtml
-                  );
-                  insertHtml("#main-content", categoriesViewHtml);
-                },
-                false
-              );
-            },
-            false
-          );
-        }
-
-        // Using categories data and snippets html
-        // build categories view HTML to be inserted into page
-        function buildCategoriesViewHtml(
-          categories,
-          categoriesTitleHtml,
-          categoryHtml
-        ) {
-          var finalHtml = categoriesTitleHtml;
-          finalHtml += "<section class='row'>";
-
-          // Loop over categories
-          for (var i = 0; i < categories.length; i++) {
-            // Insert category values
-            var html = categoryHtml;
-            var name = "" + categories[i].name;
-            var short_name = categories[i].short_name;
-            html = insertProperty(html, "name", name);
-            html = insertProperty(html, "short_name", short_name);
-            finalHtml += html;
-          }
-
-          finalHtml += "</section>";
-          return finalHtml;
-        }
 
         // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
         // chosen category from STEP 2. Use existing insertProperty function for that purpose.
@@ -192,15 +131,74 @@ $(function () {
     ); // False here because we are getting just regular HTML from the server, so no need to process JSON.
   }
 
+  // Load the menu categories view
+  dc.loadMenuCategories = function () {
+    showLoading("#main-content");
+    $ajaxUtils.sendGetRequest(allCategoriesUrl, buildAndShowCategoriesHTML);
+  };
+
   // Load the menu items view
-        // 'categoryShort' is a short_name for a category
-        dc.loadMenuItems = function (categoryShort) {
-          showLoading("#main-content");
-          $ajaxUtils.sendGetRequest(
-            menuItemsUrl + categoryShort + ".json",
-            buildAndShowMenuItemsHTML
-          );
-        };
+  // 'categoryShort' is a short_name for a category
+  dc.loadMenuItems = function (categoryShort) {
+    showLoading("#main-content");
+    $ajaxUtils.sendGetRequest(
+      menuItemsUrl + categoryShort + ".json",
+      buildAndShowMenuItemsHTML
+    );
+  };
+
+  // Builds HTML for the categories page based on the data
+  // from the server
+  function buildAndShowCategoriesHTML(categories) {
+    // Load title snippet of categories page
+    $ajaxUtils.sendGetRequest(
+      categoriesTitleHtml,
+      function (categoriesTitleHtml) {
+        // Retrieve single category snippet
+        $ajaxUtils.sendGetRequest(
+          categoryHtml,
+          function (categoryHtml) {
+            // Switch CSS class active to menu button
+            switchMenuToActive();
+
+            var categoriesViewHtml = buildCategoriesViewHtml(
+              categories,
+              categoriesTitleHtml,
+              categoryHtml
+            );
+            insertHtml("#main-content", categoriesViewHtml);
+          },
+          false
+        );
+      },
+      false
+    );
+  }
+
+  // Using categories data and snippets html
+  // build categories view HTML to be inserted into page
+  function buildCategoriesViewHtml(
+    categories,
+    categoriesTitleHtml,
+    categoryHtml
+  ) {
+    var finalHtml = categoriesTitleHtml;
+    finalHtml += "<section class='row'>";
+
+    // Loop over categories
+    for (var i = 0; i < categories.length; i++) {
+      // Insert category values
+      var html = categoryHtml;
+      var name = "" + categories[i].name;
+      var short_name = categories[i].short_name;
+      html = insertProperty(html, "name", name);
+      html = insertProperty(html, "short_name", short_name);
+      finalHtml += html;
+    }
+
+    finalHtml += "</section>";
+    return finalHtml;
+  }
 
   // Builds HTML for the single category page based on the data
   // from the server
