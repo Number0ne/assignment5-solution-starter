@@ -78,7 +78,7 @@ $(function () {
 
     // *** start ***
     // On first load, show home view
-    //showLoading("#main-content");
+    showLoading("#main-content");
     $ajaxUtils.sendGetRequest(
       allCategoriesUrl,
       buildAndShowHomeHTML, // done
@@ -113,7 +113,7 @@ $(function () {
         var homeHtmlToInsertIntoMainPage = buildMenuItemsViewHtml(
           chosenCategoryShortName,
           menuItemsTitleHtml,
-          menuItemHtml
+          homeHtml
         );
         insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
 
