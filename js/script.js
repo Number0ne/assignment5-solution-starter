@@ -78,7 +78,7 @@ $(function () {
 
     // *** start ***
     // On first load, show home view
-    showLoading("#main-content");
+    //showLoading("#main-content");
     $ajaxUtils.sendGetRequest(
       allCategoriesUrl,
       buildAndShowHomeHTML, // done
@@ -136,7 +136,7 @@ $(function () {
         // ....
       },
       false
-    ); // False here because we are getting just regular HTML from the server, so no need to process JSON.
+    );
   }
 
   // Load the menu categories view
