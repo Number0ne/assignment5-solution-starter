@@ -78,7 +78,7 @@ $(function () {
 
     // *** start ***
     // On first load, show home view
-    //showLoading("#main-content");
+    showLoading("#main-content");
     $ajaxUtils.sendGetRequest(
       allCategoriesUrl,
       buildAndShowHomeHTML, // done
@@ -114,7 +114,7 @@ $(function () {
           chosenCategoryShortName,
           homeHtml
         );
-
+        
         insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
 
         // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
@@ -141,14 +141,14 @@ $(function () {
 
   // Load the menu categories view
   dc.loadMenuCategories = function () {
-    //showLoading("#main-content");
+    showLoading("#main-content");
     $ajaxUtils.sendGetRequest(allCategoriesUrl, buildAndShowCategoriesHTML);
   };
 
   // Load the menu items view
   // 'categoryShort' is a short_name for a category
   dc.loadMenuItems = function (categoryShort) {
-    //showLoading("#main-content");
+    showLoading("#main-content");
     $ajaxUtils.sendGetRequest(
       menuItemsUrl + categoryShort + ".json",
       buildAndShowMenuItemsHTML
