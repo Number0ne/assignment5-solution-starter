@@ -141,7 +141,7 @@ $(function () {
 
   // Load the menu categories view
   dc.loadMenuCategories = function () {
-    showLoading("#main-content");
+    //showLoading("#main-content");
     $ajaxUtils.sendGetRequest(allCategoriesUrl, buildAndShowCategoriesHTML);
   };
 
