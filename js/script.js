@@ -207,10 +207,7 @@ $(function () {
     return finalHtml;
   }
 
-  function buildHomeHtml(
-    chosenCategoryShortName,
-    homeHtml
-    ) {
+  function buildHomeHtml(chosenCategoryShortName, homeHtml) {
     var finalHtml = homeHtml;
 
     finalHtml = insertProperty(
@@ -304,6 +301,7 @@ $(function () {
     }
 
     finalHtml += "</section>";
+    console.log(categories);
     return finalHtml;
   }
 
