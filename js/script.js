@@ -107,6 +107,7 @@ $(function () {
         switchMenuToActive();
 
         var chosenCategoryIndex = chooseRandomCategory(categories);
+        console.log(chosenCategoryIndex);
         var chosenCategoryShortName =
           categories[chosenCategoryIndex].short_name;
 
