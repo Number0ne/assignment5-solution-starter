@@ -106,6 +106,7 @@ $(function () {
         switchMenuToActive();
 
         var chosenCategory = chooseRandomCategory(categories);
+        
         var chosenCategoryShortName = chosenCategory.short_name;
 
         var homeHtmlToInsertIntoMainPage = buildHomeHtml(
