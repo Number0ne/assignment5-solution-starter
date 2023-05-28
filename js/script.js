@@ -93,7 +93,7 @@ $(function () {
     // Load home snippet page
     $ajaxUtils.sendGetRequest(
       homeHtmlUrl,
-      function (homeHtml) {
+      function (homeHtmlUrl) {
 
         // Given array of category objects, returns a random category object.
         function chooseRandomCategory(categories) {
@@ -112,7 +112,7 @@ $(function () {
 
         var homeHtmlToInsertIntoMainPage = buildHomeHtml(
           chosenCategoryShortName,
-          homeHtml
+          homeHtmlUrl
         );
         
         insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
