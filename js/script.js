@@ -61,31 +61,16 @@ $(function () {
 
   // On page load (before images or CSS)
   document.addEventListener("DOMContentLoaded", function (event) {
-    // TODO: STEP 0: Look over the code from
-    // *** start ***
-    // to
-    // *** finish ***
-    // below.
-    // We changed this code to retrieve all categories from the server instead of
-    // simply requesting home HTML snippet. We now also have another function
-    // called buildAndShowHomeHTML that will receive all the categories from the server
-    // and process them: choose random category, retrieve home HTML snippet, insert that
-    // random category into the home HTML snippet, and then insert that snippet into our
-    // main page (index.html).
-    //
-    // TODO: STEP 1: Substitute [...] below with the *value* of the function buildAndShowHomeHTML,
-    // so it can be called when server responds with the categories data.
 
-    // *** start ***
     // On first load, show home view
     showLoading("#main-content");
     $ajaxUtils.sendGetRequest(
       allCategoriesUrl,
+      //sends the function buildAndShowHomeHTML to the send get request fuunction so the home page can be build
       buildAndShowHomeHTML, // done
       true
     ); // Explicitly setting the flag to get JSON from server processed into an object literal
   });
-  // *** finish **
 
   // Builds HTML for the home page based on categories array
   // returned from the server.
@@ -103,36 +88,23 @@ $(function () {
           return categories[randomArrayIndex];
         }
 
+        //changes the css to the active preset
         switchMenuToActive();
 
+        //this get the chosencategory from the chooseRandomCategory function above
         var chosenCategory = chooseRandomCategory(categories);
         
+        //this gets the short name from the json object returned above to 
         var chosenCategoryShortName = chosenCategory.short_name;
 
+        //this sends the html page and the categoryshortname to be added as html
         var homeHtmlToInsertIntoMainPage = buildHomeHtml(
           chosenCategoryShortName,
           homeHtmlUrl
         );
 
+        //this adds the resulting html to the home page where the div tag is main-content
         insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
-
-        // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
-        // chosen category from STEP 2. Use existing insertProperty function for that purpose.
-        // Look through this code for an example of how to do use the insertProperty function.
-        // WARNING! You are inserting something that will have to result in a valid Javascript
-        // syntax because the substitution of {{randomCategoryShortName}} becomes an argument
-        // being passed into the $dc.loadMenuItems function. Think about what that argument needs
-        // to look like. For example, a valid call would look something like this:
-        // $dc.loadMenuItems('L')
-        // Hint: you need to surround the chosen category short name with something before inserting
-        // it into the home html snippet.
-        //
-        // var homeHtmlToInsertIntoMainPage = ....
-
-        // TODO: STEP 4: Insert the produced HTML in STEP 3 into the main page
-        // Use the existing insertHtml function for that purpose. Look through this code for an example
-        // of how to do that.
-        // ....
       },
       false
     );
@@ -207,6 +179,8 @@ $(function () {
     return finalHtml;
   }
 
+  // Using home data and snippets html
+  // build home view HTML to be inserted into page
   function buildHomeHtml(chosenCategoryShortName, homeHtml) {
     var finalHtml = homeHtml;
 
