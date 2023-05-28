@@ -78,7 +78,7 @@ $(function () {
 
     // *** start ***
     // On first load, show home view
-    showLoading("#main-content");
+    //showLoading("#main-content");
     $ajaxUtils.sendGetRequest(
       allCategoriesUrl,
       buildAndShowHomeHTML, // done
@@ -114,7 +114,7 @@ $(function () {
           chosenCategoryShortName,
           homeHtml
         );
-        
+
         insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
 
         // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
