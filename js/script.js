@@ -94,7 +94,6 @@ $(function () {
     $ajaxUtils.sendGetRequest(
       homeHtmlUrl,
       function (homeHtmlUrl) {
-
         // Given array of category objects, returns a random category object.
         function chooseRandomCategory(categories) {
           // Choose a random index into the array (from 0 inclusively until array length (exclusively))
@@ -106,16 +105,14 @@ $(function () {
 
         switchMenuToActive();
 
-        var chosenCategoryIndex = chooseRandomCategory(categories);
-        console.log(chosenCategoryIndex);
-        var chosenCategoryShortName =
-          categories[chosenCategoryIndex].short_name;
+        var chosenCategory = chooseRandomCategory(categories);
+        var chosenCategoryShortName = chosenCategory.short_name;
 
         var homeHtmlToInsertIntoMainPage = buildHomeHtml(
           chosenCategoryShortName,
           homeHtmlUrl
         );
-        
+
         insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
 
         // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
