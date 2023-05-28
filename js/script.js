@@ -81,7 +81,8 @@ $(function () {
     showLoading("#main-content");
     $ajaxUtils.sendGetRequest(
       allCategoriesUrl,
-      buildAndShowHomeHTML
+      buildAndShowHomeHTML, // done
+      true
     ); // Explicitly setting the flag to get JSON from server processed into an object literal
   });
   // *** finish **
@@ -93,6 +94,7 @@ $(function () {
     $ajaxUtils.sendGetRequest(
       homeHtmlUrl,
       function (homeHtml) {
+
         // Given array of category objects, returns a random category object.
         function chooseRandomCategory(categories) {
           // Choose a random index into the array (from 0 inclusively until array length (exclusively))
@@ -105,7 +107,6 @@ $(function () {
         switchMenuToActive();
 
         var chosenCategoryIndex = chooseRandomCategory(categories);
-        window.alert(categories[chosenCategoryIndex]);
         var chosenCategoryShortName =
           categories[chosenCategoryIndex].short_name;
 
@@ -113,6 +114,7 @@ $(function () {
           chosenCategoryShortName,
           homeHtml
         );
+        
         insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
 
         // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
