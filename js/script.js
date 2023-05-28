@@ -106,7 +106,7 @@ $(function () {
         switchMenuToActive();
 
         var chosenCategoryIndex = chooseRandomCategory(categories);
-        console.log(categories[chosenCategoryIndex]);
+        window.alert(categories[chosenCategoryIndex]);
         var chosenCategoryShortName =
           categories[chosenCategoryIndex].short_name;
 
@@ -301,7 +301,6 @@ $(function () {
     }
 
     finalHtml += "</section>";
-    console.log(categories);
     return finalHtml;
   }
 
