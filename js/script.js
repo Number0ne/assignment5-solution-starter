@@ -81,8 +81,7 @@ $(function () {
     showLoading("#main-content");
     $ajaxUtils.sendGetRequest(
       allCategoriesUrl,
-      buildAndShowHomeHTML, // done
-      true
+      buildAndShowHomeHTML
     ); // Explicitly setting the flag to get JSON from server processed into an object literal
   });
   // *** finish **
